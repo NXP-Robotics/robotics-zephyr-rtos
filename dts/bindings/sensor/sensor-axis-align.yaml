@@ -27,7 +27,6 @@ description: |
     y -> -y
     z -> -z
 
-include: base.yaml
 properties:
   axis-align-x:
     type: int
