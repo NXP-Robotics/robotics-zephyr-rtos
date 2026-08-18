@@ -1,0 +1,13 @@
+# Copyright 2026 NXP
+# SPDX-License-Identifier: Apache-2.0
+
+config MCXN_T1_I3C_WORKAROUND
+	bool "Enable I3C workaround"
+	depends on BOARD_MR_MCXN_T1
+	select CONSOLE
+	select UART_CONSOLE
+	select UART_LINE_CTRL
+	imply I2C
+
+config USBD_CDC_ACM_LOG_LEVEL
+	default 0

@@ -1,0 +1,8 @@
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: Apache-2.0
+
+shield:
+  name: mr_mcxn_t1_optical_flow
+  full_name: MR-MCXN-T1 Optical Flow Board
+  vendor: nxp
