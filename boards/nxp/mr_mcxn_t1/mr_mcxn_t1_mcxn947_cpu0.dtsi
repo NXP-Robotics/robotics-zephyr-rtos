@@ -22,9 +22,9 @@
 		zephyr,flash = &flash;
 		zephyr,flash-controller = &fmu;
 		zephyr,code-partition = &slot0_partition;
-		zephyr,uart-mcumgr = &cdc_acm_uart0;
-		zephyr,console = &cdc_acm_uart0;
-		zephyr,shell-uart = &cdc_acm_uart0;
+		zephyr,uart-mcumgr = &flexcomm1_lpuart1;
+		zephyr,console = &flexcomm1_lpuart1;
+		zephyr,shell-uart = &flexcomm1_lpuart1;
 		zephyr,canbus = &flexcan0;
 		zephyr,code-cpu1-partition = &slot1_partition;
 	};
