@@ -21,7 +21,6 @@ Base-board features:
 * **100BASE-T1** single-pair Ethernet (NXP TJA1103 PHY)
 * **2x CAN FD** (NXP TJA1462 transceivers)
 * On-board **IMU** (TDK ICM-45686)
-* On-board **magnetometer** (Bosch BMM350) and **barometer** (Bosch BMP581)
 * **USB** Type-C (device / CDC-ACM console)
 * **10-pin Pixhawk-standard debug connector** (SWD + console UART)
 * Addressable **RGB LED** (APA102-class, driven via FlexIO SPI)
@@ -45,22 +44,6 @@ Zephyr Board Target
    * - Security
      - TrustZone-M secure (``CONFIG_TRUSTED_EXECUTION_SECURE=y``), ARM MPU enabled
 
-.. warning::
-
-   Because of an I3C performance /
-   startup lock-up issue on the BMM350, the default board configuration does **not** use I3C0. Instead it:
-
-   * disables ``&i3c0`` and the ``&flexcomm1_lpuart1`` console;
-   * re-purposes the FlexComm 1 pins (``P0_20``/``P0_21``) as **LPI2C1** and
-     attaches the **BMM350** at I2C address ``0x14`` (400 kHz);
-   * **removes** the ``bmp581_0`` node (barometer not enabled in this config);
-   * moves the console / shell / mcumgr to **USB CDC-ACM**
-     (``snippet_cdc_acm_console_uart`` on ``usb1``).
-
-   The nominal (non-workaround) intent is I3C0 for both BMM350 and BMP581, with
-   the console on LPUART1. Both are documented below; the workaround config is
-   what actually ships today.
-
 On-board Peripherals
 ********************
 
@@ -76,14 +59,6 @@ On-board Peripherals
      - FlexComm 8 (LPSPI)
      - ``flexcomm8_lpspi8`` -> ``icm45686_hub@0``
      - TDK ICM-45686. ``invensense,icm45686``; INT ``gpio3 22``; 20 MHz.
-   * - Magnetometer
-     - I3C0 *(→ LPI2C1 in workaround)*
-     - ``i3c0`` / ``flexcomm1_lpi2c1`` -> ``bmm350_0``
-     - Bosch BMM350, addr ``0x14``; DRDY ``gpio0 19``; ``bosch,bmm350``.
-   * - Barometer
-     - I3C0
-     - ``i3c0`` -> ``bmp581_0``
-     - Bosch BMP581, addr ``0x47``; ``bosch,bmp581``. *Disabled in workaround.*
    * - Ethernet
      - ENET0 (RMII) + MDIO
      - ``enet`` / ``enet_mac`` / ``enet_mdio`` -> ``phy@12``
@@ -99,11 +74,11 @@ On-board Peripherals
    * - USB
      - USB1 FS + PHY
      - ``usb1`` (``zephyr_udc0``) + ``usbphy1``
-     - USB Type-C; also hosts the CDC-ACM console in the workaround config.
+     - USB Type-C
    * - Console UART
      - FlexComm 1 (LPUART)
      - ``flexcomm1_lpuart1``
-     - 115200 baud; ``P0_25`` TXD / ``P0_24`` RXD. *Disabled in workaround (USB CDC-ACM used).*
+     - 115200 baud; ``P0_25`` TXD / ``P0_24`` RXD.
    * - RGB LED
      - FLEXIO0 (SPI)
      - ``flexio0`` -> ``led_strip`` (``apa,apa102``)
@@ -123,7 +98,7 @@ Chosen Nodes and Aliases
    * - chosen / alias
      - Node
    * - ``zephyr,console`` / ``zephyr,shell-uart`` / ``zephyr,uart-mcumgr``
-     - ``flexcomm1_lpuart1`` (nominal) → ``snippet_cdc_acm_console_uart`` (workaround)
+     - ``flexcomm1_lpuart1``
    * - ``zephyr,canbus``
      - ``flexcan0``
    * - ``zephyr,sram`` / ``zephyr,flash`` / ``zephyr,code-partition``
@@ -216,10 +191,6 @@ MCXN947 Pin-Mux (base board)
      - ``FC0_P2``
      - *(not in DTS)*
      - Expansion connector
-   * - ``P0_19``
-     - ``BMM350_I2C_INT``
-     - *(not in DTS)*
-     - Sensor INT
    * - ``P0_20``
      - ``I3C0_SDA``
      - ``flexcomm1_lpi2c1 (LPI2C, I3C workaround)``
@@ -611,8 +582,7 @@ Programming and Debugging
 
 * **SWD**: ``P0_0`` SWDIO / ``P0_1`` SWCLK / ``P0_2`` SWO / ``P0_3`` TDI /
   ``P0_4`` GPIO, plus ``RESET_b`` on the 10-pin Pixhawk debug connector.
-* **Console**: LPUART1 (``P0_25`` TXD / ``P0_24`` RXD) nominally; USB CDC-ACM in
-  the as-built workaround config.
+* **Console**: LPUART1 (``P0_25`` TXD / ``P0_24`` RXD).
 
 References
 **********

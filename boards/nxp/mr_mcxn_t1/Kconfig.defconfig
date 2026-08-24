@@ -14,6 +14,4 @@ config MAIN_STACK_SIZE
 
 endif
 
-rsource "Kconfig.i3c_workaround"
-
 endif
