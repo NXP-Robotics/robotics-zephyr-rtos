@@ -1,4 +1,5 @@
-# Copyright 2026 NXP
+# Copyright 2024-2025 NXP
+#
 # SPDX-License-Identifier: Apache-2.0
 
 if(CONFIG_SOC_MCXN947_CPU0 OR CONFIG_SECOND_CORE_MCUX)
