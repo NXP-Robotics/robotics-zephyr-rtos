@@ -1,0 +1,31 @@
+#
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+identifier: mr_vmu_tropic
+name: NXP MR-VMU-Tropic
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+ram: 512
+flash: 4096
+supported:
+  - can
+  - counter
+  - dma
+  - flash
+  - gpio
+  - hwinfo
+  - i2c
+  - netif:eth
+  - pwm
+  - sdhc
+  - spi
+  - usb_device
+  - watchdog
+  - rtc
+vendor: nxp
