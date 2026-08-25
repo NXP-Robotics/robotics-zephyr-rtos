@@ -1,0 +1,61 @@
+/*
+ * Copyright 2025 CogniPilot Foundation
+ * Copyright 2026 NXP
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ */
+
+/*
+ * Shield overlay for the MR-MCXN-T1 F9P shield.
+ * Adds:  NEO-F9P-15B (GNSS) on FlexComm7 LPUART bus
+ * (P3_2=FC7_P0=RXD, P3_3=FC7_P1=TXD). The F9P driver configures
+ * the F9P's UART1 (UBX_KEY_..._UART1), so the MCU must physically
+ * talk to the F9P over UART1 = FC7.
+ */
+
+/ {
+	aliases {
+		gnss = &gnss1;
+	};
+};
+
+/* Explicitly disable LPSPI7 so only LPUART7 is enabled on FC7. */
+&flexcomm7_lpspi7 {
+	status = "disabled";
+};
+
+/*
+ * Enable the LP FlexComm7 parent so the LPUART driver can register its
+ * IRQ handler via nxp_lp_flexcomm_setirqhandler(DEVICE_DT_GET(parent)).
+ * Without this, the parent device struct (__device_dts_ord_N) is never
+ * emitted and the build fails with "'__device_dts_ord_N' undeclared".
+ */
+&flexcomm7 {
+	status = "okay";
+};
+
+&flexcomm7_lpuart7 {
+	pinctrl-0 = <&pinmux_flexcomm7_lpuart>;
+	pinctrl-names = "default";
+	current-speed = <38400>;
+	status = "okay";
+
+	gnss1: gnss {
+		compatible = "u-blox,f9p";
+		fix-rate = <1000>;
+		initial-baudrate = <38400>;
+	};
+};
+
+&pinctrl {
+	pinmux_flexcomm7_lpuart: pinmux_flexcomm7_lpuart {
+		group0 {
+			pinmux = <FC7_P0_PIO3_2>,
+				 <FC7_P1_PIO3_3>;
+			slew-rate = "fast";
+			drive-strength = "low";
+			input-enable;
+		};
+	};
+};
