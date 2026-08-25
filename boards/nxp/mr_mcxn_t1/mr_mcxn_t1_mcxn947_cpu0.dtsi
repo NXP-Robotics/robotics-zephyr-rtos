@@ -33,7 +33,7 @@
 		watchdog0 = &wwdt0;
 		rtc = &rtc;
 		led-strip = &led_strip;
-		stream0 = &icm45686_0;
+		accel0 = &icm45686_0;
 	};
 };
 
