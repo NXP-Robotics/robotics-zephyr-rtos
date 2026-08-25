@@ -1,0 +1,9 @@
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: Apache-2.0
+
+config SHIELD_MR_MCXN_T1_F9P
+	bool "MR-MCXN-T1 F9P shield"
+	help
+	  Enable support for the MR-MCXN-T1 F9P shield.
+	  Adds NEO-F9P-15B (GNSS) on FlexComm7 LPUART bus.

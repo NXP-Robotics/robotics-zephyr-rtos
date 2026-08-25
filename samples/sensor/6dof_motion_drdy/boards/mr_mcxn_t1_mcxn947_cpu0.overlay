@@ -1,0 +1,11 @@
+/*
+ * Copyright 2026 NXP
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/ {
+    aliases {
+        6dof-motion-drdy0 = &icm45686_1;
+    };
+};

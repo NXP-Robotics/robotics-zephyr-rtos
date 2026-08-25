@@ -1,0 +1,10 @@
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: Apache-2.0
+
+config SHIELD_MR_MCXN_T1_OPTICAL_FLOW
+	bool "MR-MCXN-T1 Optical Flow daughter board"
+	help
+	  Enable support for the MR-MCXN-T1 optical flow daughter board.
+	  Adds AFBR-S50 (ToF), ICM42688 (IMU), ICM45686 (IMU), and
+	  PAA3905 (optical flow sensor) on FlexComm3/6/7/9 SPI buses.
