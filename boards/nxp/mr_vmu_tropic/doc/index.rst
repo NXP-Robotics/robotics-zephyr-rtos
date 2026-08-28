@@ -191,7 +191,6 @@ The MIMXRT1064 SoC has five groups of pinmux/gpio controllers.
 +-------------------+-----------------------------+----------------------------+
 | GPIO_AD_B1_15     | LPSPI3_SCK                  | SPI2_SCK                   |
 +-------------------+-----------------------------+----------------------------+
-
 | GPIO_B0_00        | LPSPI4_PCS0                 | SPI1_CS                    |
 +-------------------+-----------------------------+----------------------------+
 | GPIO_B0_01        | LPSPI4_SIN                  | SPI1_MISO                  |
@@ -322,7 +321,7 @@ You should see the following message in the terminal:
 
 .. code-block:: console
 
-   ***** Booting Zephyr OS v3.4.0-xxxx-xxxxxxxxxxxxx *****
+   ***** Booting Zephyr OS v4.4.x-xxxx-xxxxxxxxxxxxx *****
    Hello World! vmu_tropic
 
 Debugging
