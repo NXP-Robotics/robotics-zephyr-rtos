@@ -190,3 +190,10 @@
 		int-gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
 	};
 };
+
+/ {
+    aliases {
+        stream0 = &icm45686_1;
+        6dof-motion-drdy0 = &icm45686_1;
+    };
+};
