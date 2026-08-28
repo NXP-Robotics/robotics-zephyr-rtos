@@ -19,13 +19,12 @@
 	aliases {
 		sdhc0 = &usdhc1;
 		rtc = &counter_rtc;
-		/* accel0 = &icm45686; */
 		accel0 = &bmi08x_accel;
 		pwm-led0 = &red_pwm_led;
 		watchdog0 = &wdog0;
 		magn0 = &bmm350;
-		stream0 = &icm45686;
 		pressure-sensor = &bmp390;
+		6dof-motion-drdy0 = &icm45686;
 	};
 
 	chosen {
