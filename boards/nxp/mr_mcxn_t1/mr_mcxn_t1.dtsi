@@ -89,7 +89,7 @@
 
 &flash {
 	partitions {
-		compatible = "fixed-partitions";
+		ranges;
 		#address-cells = <1>;
 		#size-cells = <1>;
 
@@ -98,16 +98,19 @@
 		 * to the flash memory sector size of 8KB.
 		 */
 		boot_partition: partition@0 {
+			compatible = "zephyr,mapped-partition";
 			label = "mcuboot";
 			reg = <0x00000000 DT_SIZE_K(80)>;
 		};
 
 		slot0_partition: partition@14000 {
+			compatible = "zephyr,mapped-partition";
 			label = "image-0";
 			reg = <0x00014000 DT_SIZE_K(984)>;
 		};
 
 		slot1_partition: partition@10A000 {
+			compatible = "zephyr,mapped-partition";
 			label = "image-1";
 			reg = <0x0010A000 DT_SIZE_K(984)>;
 		};
