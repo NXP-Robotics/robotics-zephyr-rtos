@@ -75,36 +75,6 @@
 	};
 };
 
-/* 256KB ITCM, 256KB DTCM mapping */
-&flexram {
-	flexram,bank-spec = <FLEXRAM_DTCM>,
-				<FLEXRAM_DTCM>,
-				<FLEXRAM_DTCM>,
-				<FLEXRAM_DTCM>,
-				<FLEXRAM_ITCM>,
-				<FLEXRAM_ITCM>,
-				<FLEXRAM_ITCM>,
-				<FLEXRAM_ITCM>,
-				<FLEXRAM_DTCM>,
-				<FLEXRAM_DTCM>,
-				<FLEXRAM_DTCM>,
-				<FLEXRAM_DTCM>,
-				<FLEXRAM_ITCM>,
-				<FLEXRAM_ITCM>,
-				<FLEXRAM_ITCM>,
-				<FLEXRAM_ITCM>;
-				
-	itcm: itcm@0 {
-		reg = <0x00000000 DT_SIZE_K(256)>;
-	};
-
-	dtcm: dtcm@20000000 {
-		reg = <0x20000000 DT_SIZE_K(256)>;
-	};
-
-	/delete-node/ ocram@20280000;
-};
-
 &lpi2c1 {
 	status = "okay";
 	pinctrl-0 = <&pinmux_lpi2c1>;
