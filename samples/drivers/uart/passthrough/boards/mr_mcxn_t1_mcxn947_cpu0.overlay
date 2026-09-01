@@ -1,0 +1,37 @@
+/*
+ * Copyright 2026 NXP
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/ {
+	chosen {
+		uart,passthrough = &flexcomm2_lpuart2;
+	};
+};
+
+/* Enable a second FlexComm as the "other" UART */
+&flexcomm2 {
+	status = "okay";
+};
+
+&flexcomm2_lpuart2 {
+	status = "okay";
+	current-speed = <115200>;
+	pinctrl-0 = <&pinmux_flexcomm2_lpuart>;
+	pinctrl-names = "default";
+};
+
+/* Pin assignment for LPUART2: FC2_P1 = TX (PIO4_1), FC2_P0 = RX (PIO4_0) */
+&pinctrl {
+	pinmux_flexcomm2_lpuart: pinmux_flexcomm2_lpuart {
+		group0 {
+			pinmux = <FC2_P1_PIO4_1>,
+				 <FC2_P0_PIO4_0>;
+			slew-rate = "fast";
+			drive-strength = "low";
+			input-enable;
+			bias-pull-up;
+		};
+	};
+};
