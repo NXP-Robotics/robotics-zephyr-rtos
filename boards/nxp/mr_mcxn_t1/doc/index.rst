@@ -101,8 +101,12 @@ Chosen Nodes and Aliases
      - ``flexcomm1_lpuart1``
    * - ``zephyr,canbus``
      - ``flexcan0``
-   * - ``zephyr,sram`` / ``zephyr,flash`` / ``zephyr,code-partition``
-     - ``sram0`` / ``flash`` / ``slot0_partition``
+   * - ``zephyr,sram`` / ``zephyr,flash`` / ``zephyr,code-partition`` / ``zephyr,code-cpu1-partition``
+     - ``sram0`` / ``flash`` / ``slot0_partition`` / ``slot1_partition``
+   * - ``zephyr,flash-controller``
+     - ``fmu``
+   * - ``accel0``
+     - ``icm45686_0``
    * - ``led-strip``
      - ``led_strip`` (APA102)
    * - ``watchdog0`` / ``rtc``
