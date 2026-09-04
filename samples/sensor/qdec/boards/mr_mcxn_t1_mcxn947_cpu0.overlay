@@ -2,6 +2,14 @@
  * Copyright 2026 NXP
  *
  * SPDX-License-Identifier: Apache-2.0
+ *
+ * Wiring example for a physical HW-040 (KY-040) rotary encoder on the
+ * MR-MCXN-T1 QDEC connector:
+ *   HW-040 CLK (A)  -> P1_22 / TRIG_IN3  (PHASEA)
+ *   HW-040 DT  (B)  -> P2_0  / TRIG_IN5  (PHASEB)
+ *   HW-040 +        -> connector pin 1 (VCC)
+ *   HW-040 GND      -> connector pin 6 (GND)
+ *   HW-040 SW       -> unused by the QDEC sample
  */
 
 #include <zephyr/dt-bindings/gpio/gpio.h>
@@ -9,34 +17,14 @@
 / {
 	aliases {
 		qdec0 = &qdc0;
-		qenca = &phase_a;
-		qencb = &phase_b;
 	};
-
-	/*
-	 * Optional software encoder emulator: toggling these two GPIOs
-	 * generates quadrature pulses that feed PHASEA/PHASEB, so the
-	 * sample can be exercised without external encoder hardware.
-	 */
-	encoder-emulate {
-		compatible = "gpio-leds";
-
-		phase_a: phase_a {
-			gpios = <&gpio2 2 GPIO_ACTIVE_HIGH>;
-		};
-
-		phase_b: phase_b {
-			gpios = <&gpio2 3 GPIO_ACTIVE_HIGH>;
-		};
-	};
-};
-
-&gpio2 {
-	status = "okay";
 };
 
 /*
- * QDEC input pins: PIO1_22 (TRIG_IN3) and PIO2_0 (TRIG_IN5)
+ * QDEC input pins for a physical encoder:
+ *   PHASEA = P1_22 (TRIG_IN3), PHASEB = P2_0 (TRIG_IN5)
+ * Pull-ups are enabled because the HW-040 CLK/DT lines are not
+ * actively driven high and need a defined idle level.
  */
 &pinctrl {
 	qdc0_default: qdc0_default {
@@ -46,6 +34,7 @@
 			drive-strength = "low";
 			slew-rate = "fast";
 			input-enable;
+			bias-pull-up;
 		};
 	};
 };
@@ -56,9 +45,9 @@
 
 &qdc0 {
 	status = "okay";
-	counts-per-revolution = <480>;
-	mux-states = <&inputmux0 0 0x3700002d>,
-		     <&inputmux0 0 0x36c0002f>;
+	counts-per-revolution = <80>;
+	mux-states = <&inputmux0 0 0x3700002d>,   /* PHASEA <- TRIG_IN3 */
+		     <&inputmux0 0 0x36c0002f>;   /* PHASEB <- TRIG_IN5 */
 	pinctrl-0 = <&qdc0_default>;
 	pinctrl-names = "default";
 };
