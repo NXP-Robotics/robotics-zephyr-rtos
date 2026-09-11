@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 NXP
+ * Copyright 2018-2020, 2026 NXP
  * All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -7,7 +7,7 @@
 
 #include "mr_vmu_tropic_flexspi_nor_config.h"
 
-#if defined(XIP_BOOT_HEADER_ENABLE) && (XIP_BOOT_HEADER_ENABLE == 1)
+#if defined(CONFIG_NXP_IMXRT_BOOT_HEADER) && defined(CONFIG_BOOT_FLEXSPI_NOR)
 __attribute__((section(".boot_hdr.conf"), used))
 
 const flexspi_nor_config_t qspi_flash_config = {

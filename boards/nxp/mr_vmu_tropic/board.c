@@ -33,8 +33,7 @@ static void early_delay_us(uint32_t us)
     }
 }
 
-#define STRAP_PAD_CFG_INPUT_NOPULL  (0x10B0u)
-#define STRAP_PAD_CFG_OUTPUT        (0x10B0u)
+#define STRAP_PAD_CFG  (0x10B0u)
 
 void board_early_init_hook(void)
 {
@@ -45,23 +44,23 @@ void board_early_init_hook(void)
 
     /* GPIO_B1_11 -> GPIO2_IO27  (Open / input) */
     IOMUXC_SetPinMux(IOMUXC_GPIO_B1_11_GPIO2_IO27, 0U);
-    IOMUXC_SetPinConfig(IOMUXC_GPIO_B1_11_GPIO2_IO27, STRAP_PAD_CFG_INPUT_NOPULL);
+    IOMUXC_SetPinConfig(IOMUXC_GPIO_B1_11_GPIO2_IO27, STRAP_PAD_CFG);
 
     /* GPIO_B1_05 -> GPIO2_IO21  (Drive High) */
     IOMUXC_SetPinMux(IOMUXC_GPIO_B1_05_GPIO2_IO21, 0U);
-    IOMUXC_SetPinConfig(IOMUXC_GPIO_B1_05_GPIO2_IO21, STRAP_PAD_CFG_OUTPUT);
+    IOMUXC_SetPinConfig(IOMUXC_GPIO_B1_05_GPIO2_IO21, STRAP_PAD_CFG);
 
     /* GPIO_B1_04 -> GPIO2_IO20  (Open / input) */
     IOMUXC_SetPinMux(IOMUXC_GPIO_B1_04_GPIO2_IO20, 0U);
-    IOMUXC_SetPinConfig(IOMUXC_GPIO_B1_04_GPIO2_IO20, STRAP_PAD_CFG_INPUT_NOPULL);
+    IOMUXC_SetPinConfig(IOMUXC_GPIO_B1_04_GPIO2_IO20, STRAP_PAD_CFG);
 
     /* GPIO_B1_06 -> GPIO2_IO22  (Drive Low) */
     IOMUXC_SetPinMux(IOMUXC_GPIO_B1_06_GPIO2_IO22, 0U);
-    IOMUXC_SetPinConfig(IOMUXC_GPIO_B1_06_GPIO2_IO22, STRAP_PAD_CFG_OUTPUT);
+    IOMUXC_SetPinConfig(IOMUXC_GPIO_B1_06_GPIO2_IO22, STRAP_PAD_CFG);
 
     /* Reset pin: GPIO_B0_14 -> GPIO2_IO14 */
     IOMUXC_SetPinMux(IOMUXC_GPIO_B0_14_GPIO2_IO14, 0U);
-    IOMUXC_SetPinConfig(IOMUXC_GPIO_B0_14_GPIO2_IO14, STRAP_PAD_CFG_OUTPUT);
+    IOMUXC_SetPinConfig(IOMUXC_GPIO_B0_14_GPIO2_IO14, STRAP_PAD_CFG);
 
     gpio_pin_config_t cfg_in = {
         .direction = kGPIO_DigitalInput,

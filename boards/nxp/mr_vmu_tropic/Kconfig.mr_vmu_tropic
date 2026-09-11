@@ -1,9 +1,5 @@
-# Copyright (c) 2018, NXP
+# Copyright 2018, 2026 NXP
 # SPDX-License-Identifier: Apache-2.0
 
 config BOARD_MR_VMU_TROPIC
 	select SOC_PART_NUMBER_MIMXRT1064DVL6A
-	select BOARD_EARLY_INIT_HOOK
-	select MCUX_XBARA
-	select LED
-	select LED_PWM

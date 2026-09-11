@@ -314,15 +314,15 @@ Here is an example for the :zephyr:code-sample:`hello_world` application.
 
 .. zephyr-app-commands::
    :zephyr-app: samples/hello_world
-   :board: vmu_tropic
+   :board: mr_vmu_tropic
    :goals: flash
 
 You should see the following message in the terminal:
 
 .. code-block:: console
 
-   ***** Booting Zephyr OS v4.4.x-xxxx-xxxxxxxxxxxxx *****
-   Hello World! vmu_tropic
+   *** Booting Zephyr OS ***
+   Hello World! mr_vmu_tropic/mimxrt1064
 
 Debugging
 =========
@@ -331,7 +331,7 @@ Here is an example for the :zephyr:code-sample:`hello_world` application.
 
 .. zephyr-app-commands::
    :zephyr-app: samples/hello_world
-   :board: vmu_tropic
+   :board: mr_vmu_tropic
    :goals: debug
 
 Open a serial terminal, step through the application in your debugger, and you
@@ -339,8 +339,8 @@ should see the following message in the terminal:
 
 .. code-block:: console
 
-   ***** Booting Zephyr OS v4.4.x-xxxx-xxxxxxxxxxxxx *****
-   Hello World! vmu_tropic
+   *** Booting Zephyr OS ***
+   Hello World! mr_vmu_tropic/mimxrt1064
 
 .. include:: ../../common/board-footer.rst.inc
 
