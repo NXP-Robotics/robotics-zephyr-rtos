@@ -1,0 +1,53 @@
+{
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "spdxVersion": "SPDX-2.3",
+  "creationInfo": {
+    "created": "2026-09-18T13:44:07Z",
+    "creators": [
+      "Organization: NXP"
+    ],
+    "licenseListVersion": "3.28"
+  },
+  "name": "robotics-zephyr-rtos-0.7.0",
+  "dataLicense": "CC0-1.0",
+  "documentNamespace": "https://nxp.com/spdx/9054087e-0cf6-4725-b9d4-d42420c8682d",
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-package-9054087e-0cf6-4725-b9d4-d42420c8682d",
+      "name": "robotics-zephyr-rtos",
+      "versionInfo": "0.7.0",
+      "licenseConcluded": "(Apache-2.0)",
+      "licenseDeclared": "(Apache-2.0)",
+      "downloadLocation": "https://github.com/nxp-robotics/robotics-zephyr-rtos",
+      "originator": "Organization: NXP",
+      "supplier": "NOASSERTION",
+      "externalRefs": [],
+      "filesAnalyzed": false
+    },
+    {
+      "SPDXID": "SPDXRef-package-9054087e-0cf6-4725-b9d4-d42420c8682d---db519887-4e87-4b28-9e99-a7c3b773e298",
+      "name": "zephyrproject-rtos/zephyr",
+      "versionInfo": "20260727-snapshot-231e3c5c",
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "homepage": "https://github.com/zephyrproject-rtos",
+      "downloadLocation": "NOASSERTION",
+      "originator": "Organization: unknown",
+      "supplier": "NOASSERTION",
+      "externalRefs": [],
+      "filesAnalyzed": false
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-package-9054087e-0cf6-4725-b9d4-d42420c8682d"
+    },
+    {
+      "spdxElementId": "SPDXRef-package-9054087e-0cf6-4725-b9d4-d42420c8682d",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-package-9054087e-0cf6-4725-b9d4-d42420c8682d---db519887-4e87-4b28-9e99-a7c3b773e298"
+    }
+  ]
+}
