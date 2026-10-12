@@ -473,10 +473,18 @@ static int bmp388_init(const struct device *dev)
 		return -EIO;
 	}
 
-	if (val != bmp3xx->chip_id) {
+	/*
+	 * BMP388 (0x50) and BMP390 (0x60) are register- and pin-compatible
+	 * drop-in parts sharing this driver. Accept either part regardless
+	 * of the devicetree-declared compatible, and latch the id actually
+	 * read so the rest of the driver uses the fitted part. This lets a
+	 * board be stuffed with either sensor.
+	 */
+	if (val != BMP388_ID && val != BMP390_ID) {
 		LOG_ERR("Unsupported chip detected (0x%x)!", val);
 		return -ENODEV;
 	}
+	bmp3xx->chip_id = val;
 
 	/* Read calibration data */
 	if (bmp388_get_calibration_data(dev) < 0) {
